@@ -9,4 +9,4 @@ router.route("/").post(jwtCheck,createCurrentUser)
 router.route("/").put(jwtCheck, jwtparse, validateMyUserRequest, updateCurrentUser)
 router.route("/").get(jwtCheck, jwtparse, getCurrentUser)
 
-module.exports = router
+export default router
