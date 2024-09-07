@@ -21,9 +21,6 @@ app.get("/health", async(req:Request, res:Response) =>{
 
 app.use("/api/my/user", myUserRoute)
 
-app.get("/test", (req,res) => {
-    res.status(200).json({message : "Hi"})
-})
 
 app.listen(port, () => {
     console.log(`port running at ${port}`)
