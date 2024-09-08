@@ -3,10 +3,17 @@ import cors from "cors"
 import "dotenv/config"
 import myUserRoute from "./routes/MyUserRoute";
 import mongoose from "mongoose"
-
+import {v2 as cloudinary} from 'cloudinary'
+import MyRestaurantRoute from "./routes/MyRestaurantRoute"
 
 mongoose.connect(process.env.MONGO_URL as string).then(() => {
     console.log("Connection successfull")
+})
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
 
@@ -20,6 +27,7 @@ app.get("/health", async(req:Request, res:Response) =>{
 })
 
 app.use("/api/my/user", myUserRoute)
+app.use('/api/my/restaurant', MyRestaurantRoute)
 
 
 app.listen(port, () => {
