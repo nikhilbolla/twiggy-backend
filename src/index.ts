@@ -5,6 +5,9 @@ import myUserRoute from "./routes/MyUserRoute";
 import mongoose from "mongoose"
 import {v2 as cloudinary} from 'cloudinary'
 import MyRestaurantRoute from "./routes/MyRestaurantRoute"
+import RestaurantRoute from "./routes/RestaurantRoute"
+import orderRoute from "./routes/OrderRoute";
+
 
 mongoose.connect(process.env.MONGO_URL as string).then(() => {
     console.log("Connection successfull")
@@ -28,6 +31,8 @@ app.get("/health", async(req:Request, res:Response) =>{
 
 app.use("/api/my/user", myUserRoute)
 app.use('/api/my/restaurant', MyRestaurantRoute)
+app.use("/api/restaurant", RestaurantRoute)
+app.use("/api/order", orderRoute);
 
 
 app.listen(port, () => {
