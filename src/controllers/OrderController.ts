@@ -3,8 +3,6 @@ import { Request, Response } from "express";
 import Restaurant, { MenuItemType } from "../models/restaurant";
 import Order from "../models/order";
 
-const FRONTEND_URL = process.env.FRONT_END as string;
-
 const getMyOrders = async (req: Request, res: Response) => {
   try {
     const orders = await Order.find({ user: req.userId })
@@ -59,7 +57,7 @@ const createCheckoutSession = async (req: Request, res: Response) => {
     });
 
     await newOrder.save();
-    res.json({ url: `${FRONTEND_URL}/order-status` });
+    res.json({ url: '/order-status' });
   } catch (error: any) {
     console.log(error);
     res.status(500).json({ message: error.raw.message });
